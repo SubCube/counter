@@ -14,6 +14,23 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Data:", string(data))
-	fmt.Println("Data length is", len(data))
+	wordsCount := countWords(data)
+
+	fmt.Println(wordsCount)
+}
+
+func countWords(data []byte) int {
+	wordsCount := 0
+
+	if len(data) > 0 {
+		wordsCount++
+	}
+
+	for _, value := range data {
+		if value == ' ' {
+			wordsCount++
+		}
+	}
+
+	return wordsCount
 }
