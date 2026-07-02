@@ -14,12 +14,12 @@ func main() {
 		log.Fatal(err)
 	}
 
-	wordsCount := countWords(data)
+	wordsCount := CountWords(data)
 
 	fmt.Println(wordsCount)
 }
 
-func countWords(data []byte) int {
+func CountWords(data []byte) int {
 	wordsCount := 0
 
 	if len(data) > 0 {
