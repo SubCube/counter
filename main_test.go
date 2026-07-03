@@ -1,16 +1,18 @@
-package main
+package main_test
 
-import "testing"
+import (
+	"testing"
+
+	counter "github.com/SubCube/counter"
+)
 
 func TestCountWords(t *testing.T) {
 
-	type testCase struct {
+	testCases := []struct {
 		name        string
 		input       string
 		expectation int
-	}
-
-	testCases := []testCase{
+	}{
 		{
 			name:        "5 words",
 			input:       "one two three four five",
@@ -29,7 +31,7 @@ func TestCountWords(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		result := CountWords([]byte(tc.input))
+		result := counter.CountWords([]byte(tc.input))
 
 		t.Run(tc.name, func(t *testing.T) {
 			if result != tc.expectation {
@@ -41,5 +43,6 @@ func TestCountWords(t *testing.T) {
 
 }
 
-//  go test .
+// go test .
 // go test ./...
+// go test . -v
