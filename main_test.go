@@ -3,35 +3,42 @@ package main
 import "testing"
 
 func TestCountWords(t *testing.T) {
-	input := "one two three four five"
-	expectation := 5
 
-	result := CountWords([]byte(input))
-
-	if result != expectation {
-		t.Logf("expected %d result %d", expectation, result)
-		t.Fail()
+	type testCase struct {
+		name        string
+		input       string
+		expectation int
 	}
 
-	// edge case 1
-	input = ""
-	expectation = 0
-	result = CountWords([]byte(input))
-
-	if result != expectation {
-		t.Log("expected", expectation, "result", result)
-		t.Fail()
+	testCases := []testCase{
+		{
+			name:        "5 words",
+			input:       "one two three four five",
+			expectation: 5,
+		},
+		{
+			name:        "empty",
+			input:       "",
+			expectation: 0,
+		},
+		{
+			name:        "space",
+			input:       " ",
+			expectation: 0,
+		},
 	}
 
-	// edge case 2
-	input = " "
-	expectation = 0
-	result = CountWords([]byte(input))
+	for _, tc := range testCases {
+		result := CountWords([]byte(tc.input))
 
-	if result != expectation {
-		t.Log("expected", expectation, "result", result)
-		t.Fail()
+		t.Run(tc.name, func(t *testing.T) {
+			if result != tc.expectation {
+				t.Logf("expected %d result %d", tc.expectation, result)
+				t.Fail()
+			}
+		})
 	}
+
 }
 
 //  go test .
