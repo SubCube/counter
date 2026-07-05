@@ -9,18 +9,41 @@ import (
 
 func main() {
 
-	data, err := os.ReadFile("./words.txt")
+	file, err := os.Open("./words.txt")
 
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalln(err)
 	}
 
-	wordsCount := CountWords(data)
+	/*
+		data, err := io.ReadAll(file)
 
-	fmt.Println(wordsCount)
+		if err != nil {
+			log.Fatalln(err)
+		}
+
+		wordsCount := CountWords(data)
+
+		fmt.Println(wordsCount)
+	*/
+
+	PrintFileContent(file)
 }
 
 func CountWords(data []byte) int {
 	words := bytes.Fields(data)
 	return len(words)
+}
+
+func PrintFileContent(file *os.File) {
+	bufferSize := 4096
+	buffer := make([]byte, bufferSize)
+	for {
+		size, err := file.Read(buffer)
+		if err != nil {
+			break
+		}
+		_ = size
+		fmt.Print(string(buffer[:size]))
+	}
 }
