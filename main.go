@@ -35,5 +35,9 @@ func CountWordsInFile(file *os.File) int {
 		wordsCount++
 	}
 
+	if err := scanner.Err(); err != nil {
+		log.Printf("error scanning: %v", err)
+	}
+
 	return wordsCount
 }
