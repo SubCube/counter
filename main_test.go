@@ -1,6 +1,7 @@
 package main_test
 
 import (
+	"strings"
 	"testing"
 
 	counter "github.com/SubCube/counter"
@@ -31,7 +32,8 @@ func TestCountWords(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		result := counter.CountWords([]byte(tc.input))
+		r := strings.NewReader(tc.input)
+		result := counter.CountWords(r)
 
 		t.Run(tc.name, func(t *testing.T) {
 			if result != tc.expectation {
