@@ -45,8 +45,11 @@ func CountWordsInFile(filename string) (int, error) {
 	if err != nil {
 		return 0, err
 	}
+	defer file.Close()
 
-	return CountWords(file), nil
+	count := CountWords(file)
+
+	return count, nil
 }
 
 func CountWords(file io.Reader) int {
