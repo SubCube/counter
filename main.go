@@ -10,10 +10,6 @@ import (
 
 func main() {
 
-	if len(os.Args) < 2 {
-		log.Fatalln("Error: no filename provided")
-	}
-
 	totalWords := 0
 	filenames := os.Args[1:]
 
@@ -28,6 +24,12 @@ func main() {
 		}
 		fmt.Println(wordCount, filename)
 		totalWords += wordCount
+	}
+
+	if len(filenames) == 0 {
+		// handle scd input
+		words := CountWords(os.Stdin)
+		fmt.Println(words, "stdin")
 	}
 
 	if len(filenames) > 1 {
