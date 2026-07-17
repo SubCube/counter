@@ -36,3 +36,22 @@ func CountWords(file io.Reader) int {
 
 	return wordsCount
 }
+
+func CountLines(r io.Reader) int {
+	linesCount := 0
+
+	reader := bufio.NewReader(r)
+
+	for {
+		r, _, err := reader.ReadRune()
+
+		if err != nil {
+			break
+		}
+
+		if r == '\n' {
+			linesCount++
+		}
+	}
+	return linesCount
+}
