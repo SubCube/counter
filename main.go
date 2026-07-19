@@ -24,7 +24,7 @@ func main() {
 	}
 
 	if len(filenames) == 0 {
-		// handle scd input
+		// handle std input
 		words := CountWords(os.Stdin)
 		fmt.Println(words, "stdin")
 	}
